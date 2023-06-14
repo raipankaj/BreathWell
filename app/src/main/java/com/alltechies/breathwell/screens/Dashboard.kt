@@ -3,7 +3,10 @@ package com.alltechies.breathwell.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.alltechies.breathwell.data.Breath
@@ -48,7 +52,17 @@ fun Dashboard(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "BreathWell", fontWeight = FontWeight.ExtraBold)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = "BreathWell", fontWeight = FontWeight.ExtraBold)
+
+                        Text(text = "Person Name",
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 12.sp
+                        )
+                    }
                 }
             )
         },
@@ -60,6 +74,9 @@ fun Dashboard(
             ) {
                 BreathExerciseList(types, onClick)
             }
+        },
+        bottomBar = {
+            Text(text = "Credits", modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp))
         }
     )
 }
@@ -70,7 +87,7 @@ fun BreathExerciseList(types: List<Breath>, onClick: (String) -> Unit) {
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         items(types.size) { index ->
             val breath = types[index]
@@ -93,7 +110,6 @@ fun BreathTypeTile(label: String, url: String, onClick: (String) -> Unit) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxSize()
-
             )
 
             Text(

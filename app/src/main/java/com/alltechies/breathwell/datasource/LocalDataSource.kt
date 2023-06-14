@@ -1,11 +1,10 @@
 package com.alltechies.breathwell.datasource
 
-import androidx.compose.runtime.snapshotFlow
 import com.alltechies.breathwell.data.Breath
 import com.alltechies.timer.data.Action
 import kotlinx.coroutines.flow.flow
 
-object FakeDataSource {
+object LocalDataSource {
 
     val breathList = listOf(
         Breath(

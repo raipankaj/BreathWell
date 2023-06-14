@@ -20,6 +20,7 @@ import com.alltechies.breathwell.ui.theme.BreathWellTheme
 import com.alltechies.breathwell.viewmodel.BreathViewModel
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -47,7 +48,6 @@ fun ScreenNavigation() {
     ) {
         composable("dashboard") {
             val breathViewModel: BreathViewModel = viewModel()
-
             Dashboard(
                 breathViewModel = breathViewModel,
                 onClick = {
